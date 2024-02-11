@@ -31,15 +31,28 @@ public class EnemyShooting : MonoBehaviour
         if (distance < 10)
         {
             timer += Time.deltaTime;
+            
 
+            if(timer >= 3)
+            {
+                Anim.SetBool("Attack", true);
+                Anim.SetBool("Idle", false);
+                Anim.SetBool("Rest", false);
+            }
             
             if (timer > 4)
             {
                 timer = 0;
                 Shoot();
-                               
+                Anim.SetBool("Attack", false);
+                Anim.SetBool("Rest", true);
+                Anim.SetBool("Idle", true);
             }
 
+        }else {
+            Anim.SetBool("Idle", true);
+            Anim.SetBool("Attack", false);
+            Anim.SetBool("Rest", false);
         }
 
         
@@ -47,7 +60,7 @@ public class EnemyShooting : MonoBehaviour
 
     void Shoot()
     {
-
+        
         Instantiate(Arrow, arrowPos.position, Quaternion.identity);
     }
 
