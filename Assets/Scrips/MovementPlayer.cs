@@ -1,49 +1,104 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class MovementPlayer : MonoBehaviour
 {
     public GameObject character;
     public float Speed;
-    private float MinSpeed=6;
+    private float MinSpeed = 11f;
     public Rigidbody2D rb;
     public float horizontalForce = 60.0f;
     [Range(1, 500)] public float potenciaSalto;
+    bool saltos = false;
+    private float gravedad;
 
-    private void Start()
+    private float dashTime = 0.2f;
+    private float dashForce = 5f;
+    private float timeDash = 1.5f;
+    private float timeJump = 1f;
+    private float jumpForce = 7f;
+    private bool dashing;
+    private bool canDash = true;
+    private bool Jump = true;
+    private float movement;
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = false;
+        gravedad = rb.gravityScale;
     }
 
     private void Update()
-
     {
-
-        float movement = Input.GetAxis("Horizontal");
+        movement = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * movement * Speed * Time.deltaTime);
         character.transform.position = transform.position;
-       
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.D))
         {
-            print("Sprint");
-            rb.AddForce(Vector2.right * MinSpeed, ForceMode2D.Impulse);
-            rb.isKinematic = true;
-        }else if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.A))
-        {
-            rb.AddForce(Vector2.left * MinSpeed, ForceMode2D.Impulse);
-            rb.isKinematic = true;
-        }else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            print("salto");
-            rb.AddForce(Vector2.up * Speed, ForceMode2D.Impulse);
+            StartCoroutine(invulnerableRight());
         }
-        
-        rb.isKinematic = false;
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKey(KeyCode.A))
+        {
+            StartCoroutine(invulnerableLeft());
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))   
+        {
+            StartCoroutine(Salto());
+        }
+       
     }
 
-}
+    IEnumerator invulnerableRight()
+    {
+        if  (canDash)
 
+        {
+            dashing = true;
+            canDash = false;
+            rb.gravityScale = 0f;
+            print("Sprint");
+            rb.velocity = new Vector2(movement * dashForce, 0f);
+            yield return new WaitForSeconds(dashTime);
+            dashing = false;
+            rb.gravityScale = gravedad;
+            yield return new WaitForSeconds(timeDash);
+            canDash = true;
+        }
+    }
+
+    IEnumerator invulnerableLeft()
+    {
+        if (canDash)
+        {
+
+            dashing = true;
+            canDash = false;
+            rb.gravityScale = 0f;
+            print("Sprint");
+            rb.velocity = new Vector2(movement*dashForce,0f);
+            yield return new WaitForSeconds(dashTime);
+            dashing = false;
+            rb.gravityScale = gravedad;
+            yield return new WaitForSeconds(timeDash);
+            canDash = true;
+
+        }
+        
+    }
+    IEnumerator Salto()
+    {
+        if (Jump)
+        {
+            dashing = true;
+            Jump = false;
+            print("salto");
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            yield return new WaitForSeconds(dashTime);
+            dashing = false;
+            yield return new WaitForSeconds(timeJump);
+            Jump = true;
+        }
+        
+    }
+}
