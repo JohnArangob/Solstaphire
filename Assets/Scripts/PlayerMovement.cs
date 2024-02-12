@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement Instance;
 
+    [SerializeField] bool weapon = false;
+
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -59,6 +61,14 @@ public class PlayerMovement : MonoBehaviour
 
         Flip(); //Flip the character when he runs to the other direction
 
+        Weapon();
+
+        Sheat();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Attack();
+        }
     }
 
     void GetInputs()
@@ -104,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && _rb.velocity.y > 0)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, 0);  //Salto variable
+            
         }
 
         if (Input.GetButtonDown("Jump") && Grounded())
@@ -113,6 +124,41 @@ public class PlayerMovement : MonoBehaviour
 
 
         playerAnimator.SetBool("Jump", !Grounded());
+        
+    }
+
+    void Weapon()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            weapon = true;
+            playerAnimator.SetBool("Weapon", true);
+
+        }
+        
+    }
+
+    void Sheat()
+    {
+        weapon = false;
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            playerAnimator.SetBool("Weapon", false);
+        }
+    }
+
+    void Attack()
+    {
+        float timeBetweenAttacks = 0;
+        
+        timeBetweenAttacks += Time.deltaTime;
+
+        if (timeBetweenAttacks > 3)
+        {
+            playerAnimator.SetBool("AttackA", true);
+            Debug.Log("Ataca");
+            timeBetweenAttacks = 0;
+        }
     }
 
 }

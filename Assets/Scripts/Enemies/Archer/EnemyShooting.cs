@@ -6,6 +6,7 @@ public class EnemyShooting : MonoBehaviour
 {
     [SerializeField] GameObject Arrow;
     [SerializeField] Transform arrowPos;
+    [SerializeField] SpriteRenderer _sr;
 
     private float timer;
     private GameObject player;
@@ -17,15 +18,24 @@ public class EnemyShooting : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Anim = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
+        if (player.transform.position.x < transform.position.x)
+        {
+            _sr.flipX = false;
+        }
+        else
+        {
+            _sr.flipX= true;
+        }
 
 
         if (distance < 10)
@@ -33,14 +43,14 @@ public class EnemyShooting : MonoBehaviour
             timer += Time.deltaTime;
             
 
-            if(timer >= 3)
+            if(timer >= 2)
             {
                 Anim.SetBool("Attack", true);
                 Anim.SetBool("Idle", false);
                 Anim.SetBool("Rest", false);
             }
             
-            if (timer > 4)
+            if (timer > 3)
             {
                 timer = 0;
                 Shoot();
