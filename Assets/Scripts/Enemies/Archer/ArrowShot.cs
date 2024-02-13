@@ -27,6 +27,8 @@ public class ArrowShot : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,0, rot);
 
         healthManager = FindObjectOfType<HealthManager>();
+
+        
     }
 
     // Update is called once per frame

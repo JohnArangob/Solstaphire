@@ -6,12 +6,15 @@ public class EnemyShooting : MonoBehaviour
 {
     [SerializeField] GameObject Arrow;
     [SerializeField] Transform arrowPos;
-    [SerializeField] SpriteRenderer _sr;
+    private SpriteRenderer _sr;
 
-    private float timer;
+    private float timerShoot;
+    private float timerIdle;
     private GameObject player;
 
     private Animator Anim;
+
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +22,17 @@ public class EnemyShooting : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         Anim = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+    
 
-
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+    float distance = Vector2.Distance(transform.position, player.transform.position);
 
         if (player.transform.position.x < transform.position.x)
         {
@@ -38,32 +44,28 @@ public class EnemyShooting : MonoBehaviour
         }
 
 
-        if (distance < 10)
+        if (distance < 6) 
         {
-            timer += Time.deltaTime;
-            
+            timerShoot += Time.deltaTime;
 
-            if(timer >= 2)
+            if(timerShoot >= 2)
             {
                 Anim.SetBool("Attack", true);
                 Anim.SetBool("Idle", false);
                 Anim.SetBool("Rest", false);
             }
             
-            if (timer > 3)
+            if (timerShoot > 3)
             {
-                timer = 0;
+                timerShoot = 0;
                 Shoot();
                 Anim.SetBool("Attack", false);
                 Anim.SetBool("Rest", true);
                 Anim.SetBool("Idle", true);
             }
 
-        }else {
-            Anim.SetBool("Idle", true);
-            Anim.SetBool("Attack", false);
-            Anim.SetBool("Rest", false);
         }
+
 
         
     }
@@ -74,5 +76,5 @@ public class EnemyShooting : MonoBehaviour
         Instantiate(Arrow, arrowPos.position, Quaternion.identity);
     }
 
-
+    
 }

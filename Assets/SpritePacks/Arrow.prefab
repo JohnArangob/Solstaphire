@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 5
+  healthManager: {fileID: 0}
 --- !u!50 &-8144230370624634065
 Rigidbody2D:
   serializedVersion: 4
@@ -132,7 +133,7 @@ GameObject:
   - component: {fileID: 8710550348717526359}
   m_Layer: 0
   m_Name: arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

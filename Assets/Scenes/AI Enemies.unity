@@ -108,7 +108,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
+    agentSlope: 30
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -457,43 +457,11 @@ Transform:
   m_GameObject: {fileID: 713126714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.03, y: 1.33, z: 0}
+  m_LocalPosition: {x: -1.84, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1435738656}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &774183417
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 774183419}
-  m_Layer: 0
-  m_Name: EnemyArcher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &774183419
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774183417}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.09, y: 3.98, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1115724442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957676542
@@ -559,7 +527,8 @@ GameObject:
   - component: {fileID: 1115724447}
   - component: {fileID: 1115724446}
   - component: {fileID: 1115724445}
-  m_Layer: 0
+  - component: {fileID: 1115724449}
+  m_Layer: 8
   m_Name: idle-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,12 +544,12 @@ Transform:
   m_GameObject: {fileID: 1115724441}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.27, y: -2.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0.357, z: 0}
   m_LocalScale: {x: -3.3, y: 3.3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2070338419}
-  m_Father: {fileID: 774183419}
+  m_Father: {fileID: 1912089741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1115724443
 SpriteRenderer:
@@ -749,7 +718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Arrow: {fileID: 7514169817870417979, guid: bb30650cb818ae34680285208ef6de64, type: 3}
   arrowPos: {fileID: 2070338419}
-  _sr: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!50 &1115724448
 Rigidbody2D:
   serializedVersion: 4
@@ -773,10 +742,26 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
+  m_CollisionDetection: 1
+  m_Constraints: 5
+--- !u!114 &1115724449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115724441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ff8a18c99b0934ca8081da6c342075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 6
+  recoilLength: 0
+  recoilFactor: 0
+  isRecoiling: 0
 --- !u!1 &1162642297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,10 +1187,11 @@ Transform:
   m_GameObject: {fileID: 1435738655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.638, y: -0.059999943, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1667832239}
   - {fileID: 1320492243}
   m_Father: {fileID: 713126716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1301,6 +1287,13 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 64
+  weapon: 0
+  AttackTransform: {fileID: 1667832239}
+  AttackArea: {x: 1.4, y: 1.6}
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  damage: 1
 --- !u!50 &1435738660
 Rigidbody2D:
   serializedVersion: 4
@@ -1613,6 +1606,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1667832238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667832239}
+  m_Layer: 0
+  m_Name: Attack Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1667832239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667832238}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.28, y: 0, z: 0}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1435738656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793835598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,7 +1648,7 @@ GameObject:
   - component: {fileID: 1793835600}
   - component: {fileID: 1793835599}
   - component: {fileID: 1793835601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1756,7 +1780,8 @@ GameObject:
   - component: {fileID: 1878676180}
   - component: {fileID: 1878676179}
   - component: {fileID: 1878676182}
-  m_Layer: 0
+  - component: {fileID: 1878676183}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1935,8 +1960,56 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &1878676183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878676177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ff8a18c99b0934ca8081da6c342075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 6
+  recoilLength: 0.15
+  recoilFactor: 0
+  isRecoiling: 0
+--- !u!1 &1912089738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1912089741}
+  m_Layer: 8
+  m_Name: EnemyArcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1912089741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912089738}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.4299998, y: 0.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1115724442}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063697123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,7 +2149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070338419}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArrowOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2109,7 +2182,7 @@ SceneRoots:
   - {fileID: 1162642299}
   - {fileID: 1492721746}
   - {fileID: 713126716}
-  - {fileID: 774183419}
+  - {fileID: 1912089741}
   - {fileID: 1172609684}
   - {fileID: 1258957563}
   - {fileID: 1333307644}

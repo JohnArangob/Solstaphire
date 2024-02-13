@@ -22,10 +22,18 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animator")]
     Animator playerAnimator;
 
+    [Header("Attacking")]
+    bool attack = false;
+    float timeBetweenAttack, timeSinceAttack;
+    public bool weapon;
+    [SerializeField] Transform AttackTransform;
+    [SerializeField] Vector2 AttackArea;
+    [SerializeField] LayerMask attackableLayer;
+    [SerializeField] float damage;
 
     public static PlayerMovement Instance;
 
-    [SerializeField] bool weapon = false;
+    
 
     private void Awake()
     {
@@ -44,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(AttackTransform.position, AttackArea);
     }
 
     // Update is called once per frame
@@ -65,15 +79,14 @@ public class PlayerMovement : MonoBehaviour
 
         Sheat();
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Attack();
-        }
+        Attack();
+       
     }
 
     void GetInputs()
     {
         hMovement = Input.GetAxisRaw(HorizontalAxis);
+        attack = Input.GetKeyDown(KeyCode.Z);
     }
 
     void Flip()
@@ -149,16 +162,41 @@ public class PlayerMovement : MonoBehaviour
 
     void Attack()
     {
-        float timeBetweenAttacks = 0;
-        
-        timeBetweenAttacks += Time.deltaTime;
-
-        if (timeBetweenAttacks > 3)
+        timeSinceAttack += Time.deltaTime;
+        if(attack && timeSinceAttack >= timeBetweenAttack)
         {
-            playerAnimator.SetBool("AttackA", true);
-            Debug.Log("Ataca");
-            timeBetweenAttacks = 0;
+            timeSinceAttack = 0;
+            playerAnimator.SetTrigger("AttackA");
+            Hit(AttackTransform, AttackArea);
         }
     }
 
+    void Hit(Transform AttackTransform, Vector2 AttackArea)
+    {
+        Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(AttackTransform.position, AttackArea, 0, attackableLayer);
+
+        if(objectsToHit.Length > 0)
+        {
+            Debug.Log("Hit");
+        } 
+        for(int i = 0; i < objectsToHit.Length; i++)
+        {
+            if (objectsToHit[i].GetComponent<Enemy>() != null)
+            {
+                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+            }
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Arrow") && weapon == false)
+        {
+            playerAnimator.SetTrigger("Hit");
+        }else if(other.gameObject.CompareTag("Arrow") && weapon == true)
+        {
+            playerAnimator.SetTrigger("HitWeapon");
+        }
+
+    }
 }
