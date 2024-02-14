@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask Ground;
 
     [Header("Animator")]
-    Animator playerAnimator;
+    [HideInInspector] public static Animator playerAnimator;
 
     [Header("Attacking")]
     bool attack = false;
@@ -31,8 +32,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask attackableLayer;
     [SerializeField] float damage;
 
-    public static PlayerMovement Instance;
+    public HealthManager healthManager;
 
+    public static PlayerMovement Instance;
     
 
     private void Awake()
@@ -52,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        healthManager = FindObjectOfType<HealthManager>();
     }
 
     private void OnDrawGizmos()
@@ -80,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
         Sheat();
 
         Attack();
-       
+        
+        
     }
 
     void GetInputs()
@@ -188,15 +192,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Arrow") && weapon == false)
-        {
-            playerAnimator.SetTrigger("Hit");
-        }else if(other.gameObject.CompareTag("Arrow") && weapon == true)
-        {
-            playerAnimator.SetTrigger("HitWeapon");
-        }
 
-    }
 }

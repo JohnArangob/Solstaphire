@@ -10,26 +10,32 @@ public class Enemy : MonoBehaviour
     [SerializeField] float recoilFactor;
     [SerializeField] bool isRecoiling = false;
 
+    float timer;
+
     float recoilTimer;
     Rigidbody2D rb;
+
+    [HideInInspector] public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if (health <= 0)
-        {
-            Destroy(gameObject);
+        {          
+                Destroy(gameObject);
+            
         }
         if (isRecoiling)
         {

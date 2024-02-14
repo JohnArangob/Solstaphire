@@ -7,11 +7,8 @@ public class ArrowShot : MonoBehaviour
     private GameObject Player;
     private Rigidbody2D ArrowRb;
     public float force;
-    
 
-    public HealthManager healthManager;
-
-
+    [HideInInspector] public HealthManager healthManager;
 
     private float timer;
     // Start is called before the first frame update
@@ -27,8 +24,7 @@ public class ArrowShot : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,0, rot);
 
         healthManager = FindObjectOfType<HealthManager>();
-
-        
+       
     }
 
     // Update is called once per frame
@@ -45,7 +41,6 @@ public class ArrowShot : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            Debug.Log(healthManager);
             healthManager.TakeDamageArrow();
             Destroy(gameObject);
         }

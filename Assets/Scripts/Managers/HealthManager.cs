@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +31,8 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void TakeDamageArrow(){
+    public void TakeDamageArrow()
+    {
 
         healthAmount -= ArrowDamage;
         healthBar.fillAmount = healthAmount / 100f;
@@ -43,4 +45,5 @@ public class HealthManager : MonoBehaviour
 
         healthBar.fillAmount = healthAmount / 100f;
     }
+
 }

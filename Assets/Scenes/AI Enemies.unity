@@ -304,8 +304,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
-  orthographic: 1
-  orthographic size: 5
+  orthographic: 0
+  orthographic size: 9.8387165
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -330,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -7.62, y: -2.08, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -457,7 +457,7 @@ Transform:
   m_GameObject: {fileID: 713126714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.84, y: -2.6, z: 0}
+  m_LocalPosition: {x: -7.62, y: -2.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -762,6 +762,7 @@ MonoBehaviour:
   recoilLength: 0
   recoilFactor: 0
   isRecoiling: 0
+  anim: {fileID: 0}
 --- !u!1 &1162642297
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +930,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1294,6 +1295,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   damage: 1
+  healthManager: {fileID: 0}
 --- !u!50 &1435738660
 Rigidbody2D:
   serializedVersion: 4
@@ -1458,7 +1460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: f6a83f4ba870edd46b1e6c3b27ec2551, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6a83f4ba870edd46b1e6c3b27ec2551, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1978,6 +1980,7 @@ MonoBehaviour:
   recoilLength: 0.15
   recoilFactor: 0
   isRecoiling: 0
+  anim: {fileID: 0}
 --- !u!1 &1912089738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,7 +2006,7 @@ Transform:
   m_GameObject: {fileID: 1912089738}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4299998, y: 0.86, z: 0}
+  m_LocalPosition: {x: 7.5, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
