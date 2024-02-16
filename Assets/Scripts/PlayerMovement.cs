@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private string HorizontalAxis = "Horizontal";
     [SerializeField] float mSpeed = 3.0f;
     private float hMovement;
+    [Space]
 
     [Header ("Groundcheck Settings")]
     private float jumpForceVector = 10f;
@@ -19,10 +20,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundCheckY = 0.2f;
     [SerializeField] float groundCheckX = 0.5f;
     [SerializeField] LayerMask Ground;
+    [Space]
 
     [Header("Animator")]
     [HideInInspector] public static Animator playerAnimator;
-
+    [Space]
+    
     [Header("Attacking")]
     bool attack = false;
     float timeBetweenAttack, timeSinceAttack;
@@ -31,7 +34,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 AttackArea;
     [SerializeField] LayerMask attackableLayer;
     [SerializeField] float damage;
+    [Space]
 
+    [Header("Coin")]
+    public CoinManager cm;
+    [Space]
     public HealthManager healthManager;
 
     public static PlayerMovement Instance;
@@ -85,6 +92,21 @@ public class PlayerMovement : MonoBehaviour
         Attack();
         
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            if(weapon == true)
+            {
+                playerAnimator.SetTrigger("HitWeapon");
+            }
+            else
+            {
+                playerAnimator.SetTrigger("HitA");
+            }
+        }
     }
 
     void GetInputs()
@@ -167,6 +189,8 @@ public class PlayerMovement : MonoBehaviour
     void Attack()
     {
         timeSinceAttack += Time.deltaTime;
+        
+        
         if(attack && timeSinceAttack >= timeBetweenAttack)
         {
             timeSinceAttack = 0;
@@ -192,5 +216,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            cm.coinCount++;
+            
+        }
+    }
 }
