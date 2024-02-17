@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiEnemyNow : MonoBehaviour
+public class AIEnemyNow : MonoBehaviour
 {
     public Estados estado;
     public float speed;
@@ -45,9 +45,9 @@ public class AiEnemyNow : MonoBehaviour
     void EstadoSeguir()
     {
         float directionX = Mathf.Clamp(PlayerControl.singleton.transform.position.x - _rbEnemy.transform.position.x, -1, 1);
-        Vector2 direction = new Vector2(directionX * Mathf.Abs(speed), _rbEnemy.velocity.y);
+        Vector2 direction = new Vector2(directionX * Mathf.Abs(speed) , _rbEnemy.velocity.y);
 
-        _rbEnemy.velocity = direction;
+        _rbEnemy.velocity = direction ;
         if (_distancia < distanciaAtacar)
         {
             CambiarEstado(Estados.atacar);
@@ -60,6 +60,7 @@ public class AiEnemyNow : MonoBehaviour
     void EstadoAtacar()
     {
         //Causar daño al jugador
+
         if (_distancia>distanciaAtacar + 0.5f)
         {
             CambiarEstado(Estados.seguir);
@@ -67,7 +68,7 @@ public class AiEnemyNow : MonoBehaviour
     }
     void EstadoPatrullar()
     {
-        _rbEnemy.velocity = new Vector2(speed * direction, _rbEnemy.velocity.y);
+        _rbEnemy.velocity = new Vector2(speed * direction, _rbEnemy.velocity.y * Time.deltaTime);
         if (_distancia<distanciaSeguir)
         {
             CambiarEstado(Estados.seguir);

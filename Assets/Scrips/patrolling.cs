@@ -118,11 +118,6 @@ public class Patrolling : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
         }
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, attack);
-        //Gizmos.DrawRay(transform.position, Vector2.right * (target.transform.position.x - _rbEnemy.transform.position.x));
-    }
+    
     
 }
