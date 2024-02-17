@@ -41,7 +41,6 @@ public class Patrolling : MonoBehaviour
 
             _rbEnemy.velocity = direction;
         }
-        
         else
         {
             _rbEnemy.velocity = new Vector2(speed, _rbEnemy.velocity.y);
@@ -52,7 +51,7 @@ public class Patrolling : MonoBehaviour
     {
         if (other.gameObject.tag == "Terrain")
         {
-            StartCoroutine(Colision());
+            Colision();
         }
         if (other.gameObject.tag == "PJ")
         {
@@ -83,12 +82,12 @@ public class Patrolling : MonoBehaviour
     
 
 
-    IEnumerator Colision()
+    void Colision()
     {
-
+       
         speed *= -1;
         this.transform.localScale = new Vector2(this.transform.localScale.x * -1, this.transform.localScale.y);
-        yield return new WaitForSeconds(2f);
+        
     }
     IEnumerator ataques()
     {

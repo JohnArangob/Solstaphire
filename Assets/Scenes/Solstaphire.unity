@@ -962,6 +962,7 @@ GameObject:
   - component: {fileID: 1850390339}
   - component: {fileID: 1850390344}
   - component: {fileID: 1850390345}
+  - component: {fileID: 1850390346}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1137,7 +1138,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850390338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 717fbb08a11523446b3723165fe1dd23, type: 3}
   m_Name: 
@@ -1156,6 +1157,25 @@ MonoBehaviour:
   ataquess: 0
   damage: 0
   canAttack: 1
+--- !u!114 &1850390346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850390338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614f3d3197ea19e4383d8b8d957cad47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  estado: 0
+  speed: 3
+  distanciaSeguir: 3
+  distanciaAtacar: 2
+  distanciaEscapar: 4
+  vivo: 1
+  direction: 1
 --- !u!1 &2009311589
 GameObject:
   m_ObjectHideFlags: 0
