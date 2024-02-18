@@ -82,3 +82,12 @@ Assets/AstarPathfindingProject/Documentation/documentation.html.meta
 *.meta
 *.meta
 *.meta
+Assets/Scrips/AiEnemy.cs.meta
+Assets/Scenes/Solstaphire/NavMesh-NavMesh Surface.asset.meta
+Assets/AstarPathfindingProject/Resources.meta
+Assets/AstarPathfindingProject/PackageTools/Editor/PackageToolsEditor.asmdef.meta
+Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@forward 1-01 - Default.mat.meta
+Assets/AstarPathfindingProject/ExampleScenes/Example15_2D/2D.unity.meta
+Assets/AstarPathfindingProject/Editor/AstarPathfindingProjectEditor.asmdef.meta
+Assets/AstarPathfindingProject/Documentation.meta
+Assets/AstarPathfindingProject/AstarPathfindingProject.asmdef.meta
