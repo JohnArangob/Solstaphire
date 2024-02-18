@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public static PlayerControl singleton;
-
+    public Vida vida;
     private void Awake()
     {
         singleton = this;

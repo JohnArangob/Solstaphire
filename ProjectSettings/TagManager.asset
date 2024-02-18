@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Arrow
-  - Coin
+  - Terrain
+  - PJ
   layers:
   - Default
   - TransparentFX
@@ -13,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - Obstacles
-  - Attackable
+  - Pared
+  - Dash
+  - 
   - 
   - 
   - 
