@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
-    public static PlayerControl singleton;
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        singleton = this;
+        
     }
 
     // Update is called once per frame
