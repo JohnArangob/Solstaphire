@@ -6,6 +6,10 @@ public class DoorManager : MonoBehaviour
 {
     [SerializeField] GameObject Door;
     [SerializeField] GameObject Sign;
+    [SerializeField] GameObject Text;
+    [SerializeField] int DoorPay;
+
+    private bool Interaction;
 
     public CoinManager cm;
 
@@ -16,13 +20,16 @@ public class DoorManager : MonoBehaviour
         cm = FindObjectOfType<CoinManager>();
         Sign.SetActive(false);
         Door.SetActive(true);
+        Text.SetActive(false);
+        Interaction = Input.GetKeyDown(KeyCode.E);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && cm.coinCount == 4 && InTheDoor)
+        if (Interaction && cm.coinCount == DoorPay && InTheDoor)
         {
+            cm.coinCount -= DoorPay;
             Door.SetActive(false);
             Sign.SetActive(true);
         }
@@ -33,6 +40,7 @@ public class DoorManager : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) 
         { 
             InTheDoor = true;
+            Text.SetActive(true);
             Sign.SetActive(true);
             Debug.Log(cm.coinCount);
             
@@ -46,6 +54,7 @@ public class DoorManager : MonoBehaviour
         {
             InTheDoor = false;
             Sign.SetActive(false);
+            Text.SetActive(false);
         }
     }
 }
