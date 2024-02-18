@@ -2046,6 +2046,9 @@ Transform:
 --- !u!114 &1850390345
 MonoBehaviour:
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 5e8e1cc (Atacar comienzo)
+=======
 >>>>>>> parent of 5e8e1cc (Atacar comienzo)
 =======
 >>>>>>> parent of 5e8e1cc (Atacar comienzo)
@@ -2053,6 +2056,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 416892657}
@@ -5978,6 +5982,8 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1306839582
 =======
+=======
+>>>>>>> parent of 5e8e1cc (Atacar comienzo)
 =======
 >>>>>>> parent of 5e8e1cc (Atacar comienzo)
   m_GameObject: {fileID: 1850390338}
