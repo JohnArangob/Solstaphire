@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: f81a477cda440a34eb79920a87d938ac
   - enabled: 1
-    path: Assets/Scenes/Solstaphire.unity
+    path: Assets/Scenes/Solstaphire_Part1.unity
     guid: c299b47f4fa41994d80ff2187a78f1b1
+  - enabled: 1
+    path: Assets/Scenes/Solstaphire_Part2.unity
+    guid: f1d20e122ee600d42960b472c7ccd054
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 427b73477458d3b40ad11c5d0b775bef
   m_configObjects: {}

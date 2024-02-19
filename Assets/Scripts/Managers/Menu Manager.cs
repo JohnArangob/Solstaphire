@@ -8,6 +8,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject OptionsWidnow;
     [SerializeField] GameObject TrophyWindow;
 
+    public Animator crossfade;
+
+    private float transitionTime = 1f;
+
     private void Start()
     {
         OptionsWidnow.SetActive(false);
@@ -16,7 +20,7 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        LoadNextLevel();
     }
 
     public void Options()
@@ -40,7 +44,21 @@ public class MenuManager : MonoBehaviour
 
     public void Quit()
     {
-        Debug.Log("Saliste de la aplicación");
+        Debug.Log("Saliste de la aplicaciï¿½n");
         Application.Quit();
+    }
+
+    void LoadNextLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        crossfade.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelIndex);
     }
 }
