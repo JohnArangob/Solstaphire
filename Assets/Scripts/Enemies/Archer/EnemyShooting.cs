@@ -44,18 +44,18 @@ public class EnemyShooting : MonoBehaviour
         }
 
 
-        if (distance < 6) 
+        if (distance < 10) 
         {
             timerShoot += Time.deltaTime;
 
-            if(timerShoot >= 2)
+            if(timerShoot >= 1f)
             {
                 Anim.SetBool("Attack", true);
                 Anim.SetBool("Idle", false);
                 Anim.SetBool("Rest", false);
             }
             
-            if (timerShoot > 3)
+            if (timerShoot > 1.2f)
             {
                 timerShoot = 0;
                 Shoot();
