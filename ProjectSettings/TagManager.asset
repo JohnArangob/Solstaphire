@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Arrow
   - Coin
+  - Enemy
+  - Terrain
   layers:
   - Default
   - TransparentFX

@@ -7,14 +7,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rb;
-
-    [Header ("Horizontal Movement Settings")]
+    public GameObject enemy;
+    [Header("Horizontal Movement Settings")]
     private string HorizontalAxis = "Horizontal";
     [SerializeField] float mSpeed = 3.0f;
     private float hMovement;
     [Space]
 
-    [Header ("Groundcheck Settings")]
+    [Header("Groundcheck Settings")]
     private float jumpForceVector = 10f;
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] float groundCheckY = 0.2f;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animator")]
     [HideInInspector] public static Animator playerAnimator;
     [Space]
-    
+
     [Header("Attacking")]
     bool attack = false;
     float timeBetweenAttack, timeSinceAttack;
@@ -42,11 +42,23 @@ public class PlayerMovement : MonoBehaviour
     public HealthManager healthManager;
 
     public static PlayerMovement Instance;
-    
+
+
+
+    private float _tiempoDash = 1.2f;
+    private float _gravedaInicial;
+    private float dashForce = 80f;
+    string tagname = "Enemy";
+    private new Collider2D collider;
+    private bool dashing;
+    private bool _sePuedeMover;
+    private SpriteRenderer _spriteRenderer;
+    private bool _mirando;
+
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
@@ -62,6 +74,10 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         healthManager = FindObjectOfType<HealthManager>();
+        enemy = GameObject.FindGameObjectWithTag(tagname);
+        collider = enemy.GetComponent<Collider2D>();
+        _gravedaInicial = _rb.gravityScale;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnDrawGizmos()
@@ -83,22 +99,37 @@ public class PlayerMovement : MonoBehaviour
 
         Jump(); //Jump Function
 
-        Flip(); //Flip the character when he runs to the other direction
+        if (hMovement < 0 && !_mirando)
+        {
+            Flip();
+        }
+        else if (hMovement > 0 && _mirando)
+        {
+            Flip();
+        }
+        //Flip the character when he runs to the other direction
 
         Weapon();
 
         Sheat();
 
         Attack();
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.E) && !dashing)
+        {
+            StartCoroutine(Dash());
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && !dashing)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Arrow"))
         {
-            if(weapon == true)
+            if (weapon == true)
             {
                 playerAnimator.SetTrigger("HitWeapon");
             }
@@ -114,16 +145,27 @@ public class PlayerMovement : MonoBehaviour
         hMovement = Input.GetAxisRaw(HorizontalAxis);
         attack = Input.GetKeyDown(KeyCode.Z);
     }
+    IEnumerator Dash()
+    {
+
+
+        _sePuedeMover = false;
+        dashing = true;
+        _rb.gravityScale = 0.4f;
+        _rb.velocity = new Vector2(dashForce * transform.localScale.x, 0);
+        yield return new WaitForSeconds(0.6f);
+        _sePuedeMover = true;
+        dashing = false;
+        _rb.gravityScale = _gravedaInicial;
+
+    }
 
     void Flip()
     {
-        if(hMovement < 0)
-        {
-            transform.localScale = new Vector2(-3, transform.localScale.y);
-        }else if(hMovement > 0)
-        {
-            transform.localScale = new Vector2(3, transform.localScale.y);
-        }
+        _mirando = !_mirando;
+        Vector3 escala = transform.localScale;
+        escala.x *= -1;
+        transform.localScale = escala;
     }
 
     void Move()
@@ -225,4 +267,5 @@ public class PlayerMovement : MonoBehaviour
             
         }
     }
+    
 }

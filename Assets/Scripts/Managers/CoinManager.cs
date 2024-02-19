@@ -12,12 +12,13 @@ public class CoinManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject coinTexGO = GameObject.Find("Coin Text");
+        coinText = coinTexGO.GetComponent<TextMeshProUGUI>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         coinText.text = coinCount.ToString();
-    }
+    }   
 }
