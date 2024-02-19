@@ -115,11 +115,11 @@ public class PlayerMovement : MonoBehaviour
 
         Attack();
 
-        if (Input.GetKeyDown(KeyCode.E) && !dashing)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(Dash());
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !dashing)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             StartCoroutine(Dash());
         }

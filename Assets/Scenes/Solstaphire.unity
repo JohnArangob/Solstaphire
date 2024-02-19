@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 30729978}
   - component: {fileID: 30729977}
   - component: {fileID: 30729976}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &30729979
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1068,7 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 157680138}
   - component: {fileID: 157680139}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,6 +2096,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1957796814303069617, guid: 3810f5f39110d9246bcc7e286a31438b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1321238753}
+    - targetCorrespondingSourceObject: {fileID: 1957796814303069617, guid: 3810f5f39110d9246bcc7e286a31438b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1321238760}
   m_SourcePrefab: {fileID: 100100000, guid: 3810f5f39110d9246bcc7e286a31438b, type: 3}
 --- !u!1001 &857408665
 PrefabInstance:
@@ -2424,7 +2427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1019769915}
   - component: {fileID: 1019769916}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6076,6 +6079,19 @@ MonoBehaviour:
   potenciaSalto: 4
   dashForce: 5
   jumpForce: 7
+--- !u!114 &1321238760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321238745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42c8992318627247a001443d14b2043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: {fileID: 0}
 --- !u!1001 &1332382212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7421,7 +7437,7 @@ GameObject:
   - component: {fileID: 1995497151}
   - component: {fileID: 1995497150}
   - component: {fileID: 1995497149}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7525,7 +7541,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1995497152
 SpriteRenderer:
   m_ObjectHideFlags: 0
