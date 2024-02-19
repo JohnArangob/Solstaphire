@@ -7,8 +7,10 @@ public class DoorManager : MonoBehaviour
     [SerializeField] GameObject Door;
     [SerializeField] GameObject Sign;
 
-    public CoinManager cm;
+    public int DoorPrice;
 
+    public CoinManager cm;
+    public bool Portal = true;
     bool InTheDoor = false;
     // Start is called before the first frame update
     void Start()
@@ -21,10 +23,12 @@ public class DoorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && cm.coinCount == 4 && InTheDoor)
-        {
+
+        if (Input.GetKeyDown(KeyCode.E)  && InTheDoor)
+        {        
             Door.SetActive(false);
-            Sign.SetActive(true);
+            cm.coinCount -= DoorPrice;
+            Portal = false;
         }
     }
 
@@ -34,8 +38,6 @@ public class DoorManager : MonoBehaviour
         { 
             InTheDoor = true;
             Sign.SetActive(true);
-            Debug.Log(cm.coinCount);
-            
         }
        
     }
@@ -45,7 +47,8 @@ public class DoorManager : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             InTheDoor = false;
-            Sign.SetActive(false);
+            Sign.SetActive(false);    
         }
     }
 }
+
