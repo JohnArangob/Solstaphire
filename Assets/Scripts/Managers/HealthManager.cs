@@ -4,21 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static System.TimeZoneInfo;
 
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] Image healthBar;
     [SerializeField] float healthAmount = 100;
 
-    public float ArrowDamage = 5f;
+    public float ArrowDamage;
 
     [SerializeField] float healingAmount = 2f;
 
 
+    [SerializeField] DoorSceneChange DSC;
+
+    [SerializeField] PlayerMovement pMovement;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        DSC = FindObjectOfType<DoorSceneChange>();
+        pMovement = FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -28,6 +34,11 @@ public class HealthManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.UpArrow)){
 
             Heal();
+        }
+
+        if(healthAmount <= 0)
+        {
+            Death();
         }
     }
 
@@ -46,4 +57,20 @@ public class HealthManager : MonoBehaviour
         healthBar.fillAmount = healthAmount / 100f;
     }
 
+
+    public void Death() 
+    {
+
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        DSC.transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(levelIndex);
+        
+    }
 }

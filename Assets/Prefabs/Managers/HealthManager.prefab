@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   healthAmount: 100
-  ArrowDamage: 5
+  ArrowDamage: 10
   healingAmount: 2
+  DSC: {fileID: 0}
+  pMovement: {fileID: 0}

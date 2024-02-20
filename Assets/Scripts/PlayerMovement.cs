@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [Space]
 
     [Header("Animator")]
-    [HideInInspector] public static Animator playerAnimator;
+    [HideInInspector] public Animator playerAnimator;
     [Space]
     
     [Header("Attacking")]
